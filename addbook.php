@@ -1,6 +1,6 @@
 <html>
 <head>
-   <title>Add New Record in MySQL Database</title>
+   <title>Add book to stock</title>
 </head>
 	<?php include("header.php");?>
 <body>
@@ -66,7 +66,7 @@
          <tr>
             <td width="250"> </td>
             <td>
-               <input name="add" type="submit" id="add" value="Add DOC">
+               <input name="add" type="submit" id="add" value="Add Book">
             </td>
          </tr>
       </table>
