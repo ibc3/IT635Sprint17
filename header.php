@@ -8,6 +8,10 @@
 	</li>
 	<li><a href="addbook.php">Add Book</a>
 	</li>
+	<li><a href="Filterbook.php">Add Book</a>
+	</li>
+	<li><a href="Sortbook.php">Add Book</a>
+	</li>
 </ul>
 
 </html>
