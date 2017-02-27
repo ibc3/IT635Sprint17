@@ -1,6 +1,6 @@
 <html>
 <head>
-   <title>Sort Book in a Library</title>
+   <title>Borrow Book from a Library Stock</title>
 </head>
 	<?php include("header.php");?>
 <body>
@@ -66,7 +66,7 @@
          <tr>
             <td width="250"> </td>
             <td>
-               <input name="add" type="submit" id="add" value="Sort Book">
+               <input name="add" type="submit" id="add" value="Borrow Book">
             </td>
          </tr>
       </table>

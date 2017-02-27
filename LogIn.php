@@ -1,6 +1,6 @@
 <html>
 <head>
-   <title>Add New Record in MySQL Database</title>
+   <title>Log Into in MySQL Database</title>
 </head>
 <body>
    <?php

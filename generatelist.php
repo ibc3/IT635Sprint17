@@ -1,6 +1,6 @@
 <html>
 <head>
-   <title>Generate List</title>
+   <title>Generate List of Books in a Library</title>
 </head>
 	<?php include("header.php");?>
 <body>

@@ -1,6 +1,6 @@
 <html>
 <head>
-   <title>Filter Book</title>
+   <title>Filter Book in a Library</title>
 </head>
 	<?php include("header.php");?>
 <body>
@@ -66,7 +66,7 @@
          <tr>
             <td width="250"> </td>
             <td>
-               <input name="add" type="submit" id="add" value="Generate List">
+               <input name="add" type="submit" id="add" value="Filter Book">
             </td>
          </tr>
       </table>

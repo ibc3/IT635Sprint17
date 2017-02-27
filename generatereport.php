@@ -1,6 +1,6 @@
 <html>
 <head>
-   <title>Generate report</title>
+   <title>Generate Report from a Library</title>
 </head>
 	<?php include("header.php");?>
 <body>
