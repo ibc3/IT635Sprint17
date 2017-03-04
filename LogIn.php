@@ -29,7 +29,7 @@
               echo "Invalid User\n";
           }
 		  else{
-			  header('Location: http://localhost/InsertDoc.php');
+			  header('Location: http://localhost/addbook.php');
 			  die;
 		  }
           mysqli_close($conn);
