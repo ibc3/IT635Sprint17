@@ -8,11 +8,11 @@
 	 	$dbhost = 'localhost:3306';
         $dbuser = 'root';
         $dbpass = 'JESUS+me2';
-		$dbname = 'library';
+		$dbname = 'library'; //LOGING INTO THE DATABASE
 	?>
 <body>
    <?php
-      if (isset($_POST['add'])) {
+      if (isset($_POST['add'])) { //FIELD VERIFICATION TO MAKE SURE THAT NOTHING IS EMPTY
           $err = false;
 		  if(empty($_POST['document_title'])){ 
 			  $titleErr = " Field must have a title";

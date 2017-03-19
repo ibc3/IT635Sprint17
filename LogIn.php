@@ -12,30 +12,30 @@
           $conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
           if (!$conn) {
               die('Could not connect: ' . mysqli_error($conn));
-          }
+          } //LOGING INTO THE DATABASE
 		  
-		  $UserName = addslashes($_POST['UserName']);
-          $Password = addslashes($_POST['Password']);
+		  $UserName = addslashes($_POST['UserName']); //CREATING THE USERNAME
+          $Password = addslashes($_POST['Password']); //CREATING THE PASSWORD
 		 
           
       
           $sql = "SELECT * FROM USER  WHERE User_Type_Admin = 'Y'
-			  AND LoginName = '$UserName' AND Password = '$Password';";
+			  AND LoginName = '$UserName' AND Password = '$Password';"; //GETTING THE USER INFORMATION
 			 
 		  
 		  
           $retval = mysqli_query($conn, $sql);
-          if (mysqli_num_rows($retval)==0) {
+          if (mysqli_num_rows($retval)==0) { //COUNTS THE NUMBER OF ROW TO FIND THE USER INFORMATION
               echo "Invalid User\n";
           }
 		  else{
-			  header('Location: http://localhost/addbook.php');
+			  header('Location: http://localhost/addbook.php'); 
 			  die;
 		  }
           mysqli_close($conn);
       } else {
       ?>
-   <form method="post" action="<?php
+   <form method="post" action="<?php //THE BELOW IS JUST A FORM THE ASK FOR THE USERNAME, PASSWORD,
       $_PHP_SELF;
       ?>">
       <table width="600" border="0" cellspacing="1" cellpadding="2">

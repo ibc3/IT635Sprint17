@@ -48,7 +48,7 @@
 			} else {
 				$row['borrowed'] = 'no';
 				$unborrowedcount++;
-			}
+			} //COUNTING THE AMOUNT OF BORROWED BOOKS
 			/*foreach($row as $key => $value){
 				echo $key . " " .$value;
 			}*/
