@@ -1,0 +1,35 @@
+    1  passwd
+    2  exit
+    3  apt-get update
+    4  apt-get upgrade
+    5  apt-get update
+    6  apt-get install mysql-server
+    7  mysql_secure_installation 
+    8  systemctl status mysql.service
+    9  javac
+   10  mysql -u root -p
+   11  mysql -u root -p library < library.sql 
+   12  mysql -u root -p
+   13  cd /etc/mysql/
+   14  ls
+   15  cd mysql.conf.d/
+   16  ls 
+   17  nano mysqld.cnf 
+   18  systemctl restart mysql.service
+   19  systemctl status mysql.service
+   20  mysql -u root -p
+   21  exit
+   22  nano /etc/mysql/mysql.conf.d/mysqld.cnf 
+   23  mysql -u root -p
+   24  systemctl stop mysql
+   25  systemctl status mysql
+   26  systemctl start mysql
+   27  systemctl status mysql
+   28  mysql -u root -p
+   29  cat ~/.mysql_history 
+   30  git pull origin master
+   31  apt install git
+   32  git pull origin master
+   33  exit
+   34  cat ~/.mysql_history 
+   35  history > historyslave.text
