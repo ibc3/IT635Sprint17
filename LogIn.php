@@ -5,17 +5,19 @@
 <body>
    <?php
       if (isset($_POST['add'])) {
-          $dbhost = 'localhost:3306';
+          $dbhost = 'localhost';
+		  $dbport='3306';
           $dbuser = 'root';
-          $dbpass = 'JESUS+me2';
+          $dbpass = 'password';
 		  $dbname = 'library';
-          $conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+          $conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
           if (!$conn) {
-              die('Could not connect: ' . mysqli_error($conn));
+              die('Could not connect: ' . mysqli_connect_error());
           } //LOGING INTO THE DATABASE
 		  
 		  $UserName = addslashes($_POST['UserName']); //CREATING THE USERNAME
-          $Password = addslashes($_POST['Password']); //CREATING THE PASSWORD
+          $Password = hash('sha1' , addslashes($_POST['Password'])); //CREATING THE PASSWORD
+		  
 		 
           
       

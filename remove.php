@@ -4,11 +4,11 @@
 	<style> .error { color: #FF0000; }</style>
 </head>
 	<?php include("header.php");
-	
-		$dbhost = 'localhost:3306';
-		$dbuser = 'root';
-		$dbpass = 'JESUS+me2';
-		$dbname = 'library';
+	  	  $dbhost = 'localhost';
+		  $dbport='3306';
+          $dbuser = 'root';
+          $dbpass = 'password';
+		  $dbname = 'library';
 	?>
 <body>
    <?php
@@ -17,7 +17,7 @@
         	$err = false;
 		    if(!empty($_POST['isbn'])){
 				$ISBN = $_POST['isbn'];
-				$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+				$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 
 				if (!$conn) {
 				  die('Could not connect: ' . mysqli_error($conn));
@@ -40,7 +40,7 @@
 		  <p> 
 			  <?php 
 
-				$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+				$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 				if (!$conn) {
 				  die('Could not connect: ' . mysqli_error($conn));
 				}

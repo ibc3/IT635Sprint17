@@ -3,10 +3,10 @@
    <title>Filter Book in a Library</title>
 </head>
 	<?php include("header.php");
-	
-		$dbhost = 'localhost:3306';
-		$dbuser = 'root';
-		$dbpass = 'JESUS+me2';
+		$dbhost = 'localhost';
+		$dbport='3306';
+        $dbuser = 'root';
+        $dbpass = 'password';
 		$dbname = 'library';
 	?>
 <body>
@@ -15,7 +15,7 @@
 	  <p> 
 		  <?php 
 
-			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 			if (!$conn) {
 			  die('Could not connect: ' . mysqli_error($conn));
 			}
@@ -53,7 +53,7 @@
 	 	  <p> 
 		  <?php 
 
-			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 			if (!$conn) {
 			  die('Could not connect: ' . mysqli_error($conn));
 			}

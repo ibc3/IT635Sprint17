@@ -6,9 +6,10 @@
 	<?php include("header.php");?>
 <body>
    <?php
-		$dbhost = 'localhost:3306';
-		$dbuser = 'root';
-		$dbpass = 'JESUS+me2';
+		$dbhost = 'localhost';
+		$dbport='3306';
+        $dbuser = 'root';
+        $dbpass = 'password';
 		$dbname = 'library';
 	
 		if(isset($_POST['borrow'])){
@@ -62,7 +63,7 @@
 			
 			if(!$err){
 				if(isset($_POST['borrow'])) {
-					$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+					$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 					if (!$conn) {
 					  die('Could not connect: ' . mysqli_error($conn));
 					}
@@ -83,8 +84,13 @@
 
 
 
+					
+					$sql = "UPDATE `DOC` SET hits = hits + 1 WHERE ISBN=${ISBN}";
+				
+					$retval = mysqli_query($conn, $sql);
+					$sql = "UPDATE `DOC` SET date=curdate() WHERE ISBN=${ISBN}";
+					$retval = mysqli_query($conn, $sql);
 					mysqli_close($conn);
-
 					header("Refresh:0");
 
 				}
@@ -97,7 +103,7 @@
 	  <p> 
 		  <?php 
 
-			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 			if (!$conn) {
 			  die('Could not connect: ' . mysqli_error($conn));
 			}
@@ -131,12 +137,125 @@
 
 		  ?>
 	  </p>
+	
+	
+	
+	<h1> Most Popular BOOKS </h1>
+	
+	<?php
+		$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
+		if (!$conn) {
+		  die('Could not connect: ' . mysqli_error($conn));
+		}
+		$sql = "SELECT * FROM `DOC` ORDER BY hits desc"; //sql query to retrieve available books
+
+		$retval = mysqli_query($conn, $sql); //executing the sql query and result is saved in retval
+		if (!$retval) {
+			die('Could not enter data: ' . mysqli_error($conn));
+		} //if there is no return value, kill mysql because it can't enter data
+
+		//echo "Entered data successfully\n";
+		$table =  '<table style="width:100%;">
+					  <tr>
+						<th style="text-align: left">Book Title</th>
+						<th style="text-align: left">ISBN</th> 
+						<th style="text-align: left">PublisherID</th>
+						<th style="text-align: left">Branch</th>
+						<th style="text-align: left">Publisher</th>
+						<th style="text-align: left">LibID</th>
+						<th style="text-align: left">Borrowed</th>
+						<th style="text-align: left">Hits</th>
+					  </tr>';
+
+		echo $table;
+		$borrowedcount = 0;
+		$unborrowedcount = 0;
+		$rows = 0;
+		while ($row = $retval->fetch_assoc()){
+			$rows++;
+			if($row['borrowed'] == 1){
+				$row['borrowed'] = 'yes';
+				$borrowedcount++;
+			} else {
+				$row['borrowed'] = 'no';
+				$unborrowedcount++;
+			} //COUNTING THE AMOUNT OF BORROWED BOOKS
+			/*foreach($row as $key => $value){
+				echo $key . " " .$value;
+			}*/
+			echo  '<tr align="left">' . '<td>' . $row["Title"] .'</td>' .  '<td>' . $row["ISBN"] . '</td>' . '<td>'. $row['PublisherID'] . '</td>' . '<td>' . $row['branch'] . '</td>' . '<td>'. $row['Publisher'] .'</td>' . '<td>' . $row['LibID'] . '</td>' 
+				 . '<td>' . $row['borrowed'] . '</td>'. '<td>' . $row['hits'] . '</td>' .'</tr>' ;
+		
+		}
+			echo '</table>';
+		
+		mysqli_close($conn);
+	?>
+	
+		<h1> Checkout Frequency </h1>
+	
+	<?php
+		$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
+		if (!$conn) {
+		  die('Could not connect: ' . mysqli_error($conn));
+		}
+		$sql = "SELECT * FROM `DOC` ORDER BY date desc"; //sql query to retrieve available books
+
+		$retval = mysqli_query($conn, $sql); //executing the sql query and result is saved in retval
+		if (!$retval) {
+			die('Could not enter data: ' . mysqli_error($conn));
+		} //if there is no return value, kill mysql because it can't enter data
+
+		//echo "Entered data successfully\n";
+		$table =  '<table style="width:100%;">
+					  <tr>
+						<th style="text-align: left">Book Title</th>
+						<th style="text-align: left">ISBN</th> 
+						<th style="text-align: left">PublisherID</th>
+						<th style="text-align: left">Branch</th>
+						<th style="text-align: left">Publisher</th>
+						<th style="text-align: left">LibID</th>
+						<th style="text-align: left">Borrowed</th>
+						<th style="text-align: left">date</th>
+					  </tr>';
+
+		echo $table;
+		$borrowedcount = 0;
+		$unborrowedcount = 0;
+		$rows = 0;
+		while ($row = $retval->fetch_assoc()){
+			$rows++;
+			if($row['borrowed'] == 1){
+				$row['borrowed'] = 'yes';
+				$borrowedcount++;
+			} else {
+				$row['borrowed'] = 'no';
+				$unborrowedcount++;
+			} //COUNTING THE AMOUNT OF BORROWED BOOKS
+			/*foreach($row as $key => $value){
+				echo $key . " " .$value;
+			}*/
+			echo  '<tr align="left">' . '<td>' . $row["Title"] .'</td>' .  '<td>' . $row["ISBN"] . '</td>' . '<td>'. $row['PublisherID'] . '</td>' . '<td>' . $row['branch'] . '</td>' . '<td>'. $row['Publisher'] .'</td>' . '<td>' . $row['LibID'] . '</td>' 
+				 . '<td>' . $row['borrowed'] . '</td>'. '<td>' . $row['date'] . '</td>' .'</tr>' ;
+		
+		}
+			echo '</table>';
+		
+		mysqli_close($conn);
+	?>
+	
+	
+	
+	
 		  <div>
+			  
+			  
+			  
 	 <h1>Books that have been borrowed</h1>
 	 	  <p> 
 		  <?php 
 
-			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+			$conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 			if (!$conn) {
 			  die('Could not connect: ' . mysqli_error($conn));
 			}

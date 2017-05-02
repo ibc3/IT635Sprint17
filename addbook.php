@@ -5,9 +5,10 @@
 </head>
 	<?php 
 		include("header.php");
-	 	$dbhost = 'localhost:3306';
+	 	$dbhost = 'localhost';
+		$dbport='3306';
         $dbuser = 'root';
-        $dbpass = 'JESUS+me2';
+        $dbpass = 'password';
 		$dbname = 'library'; //LOGING INTO THE DATABASE
 	?>
 <body>
@@ -67,7 +68,7 @@
 			  $sql = "INSERT INTO DOC (Title,Publisher, PublisherID, LibID,ISBN,borrowed,branch) VALUES " . "('$document_title','$publisher','$publisher_id','$lib_id','$ISBN',0,'$branch')";
 
 
-			  $conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+			  $conn   = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, $dbport);
 			  if (!$conn) {
 				  die('Could not connect: ' . mysqli_error($conn));
 			  }
